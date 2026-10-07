@@ -1,0 +1,14 @@
+{
+  "name": "redirect-generator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Генератор 301-редиректов для Apache (.htaccess) и nginx с командами проверки",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

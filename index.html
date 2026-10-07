@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Генератор редиректов — .htaccess и nginx</title>
+  <meta name="description" content="Генератор 301-редиректов для Apache (.htaccess) и nginx с командами curl для проверки.">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>Генератор редиректов</h1>
+    <p>Отметьте правила — получите готовый <code>.htaccess</code>, конфиг nginx и команды для проверки.</p>
+  </header>
+
+  <main class="layout">
+    <form id="rules-form" class="panel" novalidate>
+      <label class="field">
+        <span>Домен</span>
+        <input name="domain" type="text" placeholder="example.com" autocomplete="off" spellcheck="false">
+      </label>
+
+      <fieldset class="field">
+        <legend>Протокол</legend>
+        <label><input name="https" type="checkbox" checked> HTTP → HTTPS</label>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Зеркало</legend>
+        <label><input name="www" type="radio" value="remove" checked> без www</label>
+        <label><input name="www" type="radio" value="add"> с www</label>
+        <label><input name="www" type="radio" value="keep"> не трогать</label>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Слеш в конце адреса</legend>
+        <label><input name="trailingSlash" type="radio" value="keep" checked> не трогать</label>
+        <label><input name="trailingSlash" type="radio" value="add"> добавлять</label>
+        <label><input name="trailingSlash" type="radio" value="remove"> убирать</label>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend>Индексные файлы</legend>
+        <label><input name="stripIndex" type="checkbox" checked> index.php / index.html → /</label>
+      </fieldset>
+
+      <label class="field">
+        <span>Свои редиректы — по одному на строку: старый адрес и новый</span>
+        <textarea name="custom" rows="6" placeholder="/old-page/ /new-page/"></textarea>
+      </label>
+    </form>
+
+    <section class="panel output" aria-label="Результат">
+      <div class="tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-target="htaccess">.htaccess</button>
+        <button type="button" role="tab" aria-selected="false" data-target="nginx">nginx</button>
+        <button type="button" role="tab" aria-selected="false" data-target="curl">Проверка</button>
+      </div>
+      <pre id="htaccess" class="code"><code># здесь появится .htaccess</code></pre>
+      <pre id="nginx" class="code" hidden><code># здесь появится конфиг nginx</code></pre>
+      <pre id="curl" class="code" hidden><code># здесь появятся команды curl</code></pre>
+      <div class="actions">
+        <button type="button" id="copy">Скопировать</button>
+        <button type="button" id="download">Скачать</button>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
